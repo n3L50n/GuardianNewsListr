@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
-    private String urlAssembler(){
+    private String urlAssembler(String articleUrl){
+
+        mArticleUrl = articleUrl;
 
         String newsQuery = "art";
 
@@ -51,8 +54,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<NewsArticle>> onCreateLoader(int id, Bundle args) {
-        urlAssembler();
         mAdapter.clear();
+        urlAssembler(mArticleUrl);
+        Log.v("onCreateLoaderUrl", mArticleUrl);
         return new ArticleLoader(MainActivity.this, mArticleUrl);
     }
 

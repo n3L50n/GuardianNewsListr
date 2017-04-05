@@ -3,11 +3,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_container"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
-    card_view:cardBackgroundColor="@color/card_view_background_color"
+    card_view:cardBackgroundColor="@color/colorPrimary"
     card_view:cardCornerRadius="@dimen/card_view_corner_radius"
     card_view:cardElevation="@dimen/card_view_elevation">
 
