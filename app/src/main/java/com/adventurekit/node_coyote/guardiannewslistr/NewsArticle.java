@@ -14,10 +14,12 @@ public class NewsArticle {
 
     /**
      * Constructor for bare minimum news information
-     * @param articleTitle the Title of article
+     *
+     * @param articleTitle       the Title of article
      * @param articleSectionName the Section name of the article
+     * @param articleUrl         when tapped, the ListView item should redirect user to this url
      */
-    public NewsArticle(String articleTitle, String articleSectionName, String articleUrl){
+    public NewsArticle(String articleTitle, String articleSectionName, String articleUrl) {
         mArticleTitle = articleTitle;
         mArticleSectionName = articleSectionName;
         mArticleUrl = articleUrl;
@@ -25,11 +27,13 @@ public class NewsArticle {
 
     /**
      * Constructor for the case of no date published
-     * @param articleTitle the Title of article
+     *
+     * @param articleTitle       the Title of article
      * @param articleSectionName the Section name of the article
-     * @param author the Author of the News article
+     * @param author             the Author of the News article
+     * @param articleUrl         when tapped, the ListView item should redirect user to this url
      */
-    public NewsArticle(String articleTitle, String articleSectionName, String author, String articleUrl){
+    public NewsArticle(String articleTitle, String articleSectionName, String author, String articleUrl) {
         mArticleTitle = articleTitle;
         mArticleSectionName = articleSectionName;
         mAuthor = author;
@@ -38,12 +42,14 @@ public class NewsArticle {
 
     /**
      * Constructor for the case of all members queried
-     * @param articleTitle the Title of article
+     *
+     * @param articleTitle       the Title of article
      * @param articleSectionName the Section name of the article
-     * @param author the Author of the News article
-     * @param datePublished the date the News article was published
+     * @param author             the Author of the News article
+     * @param datePublished      the date the News article was published
+     * @param articleUrl         when tapped, the ListView item should redirect user to this url
      */
-    public NewsArticle(String articleTitle, String articleSectionName, String author, String datePublished, String articleUrl){
+    public NewsArticle(String articleTitle, String articleSectionName, String author, String datePublished, String articleUrl) {
         mArticleTitle = articleTitle;
         mArticleSectionName = articleSectionName;
         mAuthor = author;
@@ -51,19 +57,19 @@ public class NewsArticle {
         mArticleUrl = articleUrl;
     }
 
-    public String getArticleTitle(){
+    public String getArticleTitle() {
         return mArticleTitle;
     }
 
-    public String getArticleSectionName(){
+    public String getArticleSectionName() {
         return mArticleSectionName;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return mAuthor;
     }
 
-    public String getDatePublished(){
+    public String getDatePublished() {
         return mDatePublished;
     }
 }

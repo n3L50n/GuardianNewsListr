@@ -131,16 +131,16 @@ public final class QueryUtility {
             // Begin with root JSON object
             JSONObject response = new JSONObject(guardianNewsJSON);
 
-            // Step into JSON array "items"
-            JSONArray items = response.getJSONArray("items");
+            // Step into JSON array "results"
+            JSONArray results = response.getJSONArray("results");
 
-            // Cycle through items within the array to create new News Articles
-            for (int i = 0; i < items.length(); i++ ){
+            // Cycle through results within the array to create new News Articles
+            for (int i = 0; i < results.length(); i++ ){
 
                 String author = null;
 
                 // Get a Story
-                JSONObject story = items.getJSONObject(i);
+                JSONObject story = results.getJSONObject(i);
 
                 // Get Volume info containing title and author
                 JSONObject volumeInfo = story.getJSONObject("volumeInfo");
