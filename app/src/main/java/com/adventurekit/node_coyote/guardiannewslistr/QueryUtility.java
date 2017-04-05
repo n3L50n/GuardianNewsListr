@@ -128,8 +128,12 @@ public final class QueryUtility {
 
         // Attempt to parse the JSON. Throw an exception if there is a problem
         try {
+
             // Begin with root JSON object
-            JSONObject response = new JSONObject(guardianNewsJSON);
+            JSONObject root = new JSONObject(guardianNewsJSON);
+
+            // Step into JSON object "response"
+            JSONObject response = root.getJSONObject("response");
 
             // Step into JSON array "results"
             JSONArray results = response.getJSONArray("results");
@@ -137,26 +141,22 @@ public final class QueryUtility {
             // Cycle through results within the array to create new News Articles
             for (int i = 0; i < results.length(); i++ ){
 
-                String author = null;
+                // Get a News Article
+                JSONObject article = results.getJSONObject(i);
 
-                // Get a Story
-                JSONObject story = results.getJSONObject(i);
+                // Get a Title of News Article
+                String webTitle = article.getString("webTitle");
 
-                // Get Volume info containing title and author
-                JSONObject volumeInfo = story.getJSONObject("volumeInfo");
+                // Get Section Name of News Article
+                String sectionName = article.getString("sectionName");
 
-                // Get the title of a story
-                String title = volumeInfo.getString("title");
+                // Get the Publication Date of a News Article
+                String pubDate = article.getString("webPublicationDate");
 
-                // Get the authors array of a story
-                JSONArray authors = volumeInfo.getJSONArray("authors");
+                // Get the url of the News Article
+                String url = article.getString("webUrl");
 
-                // Cycle through Array of authors to get authors
-                for (int j = 0; j < authors.length(); j++){
-                    author = authors.getString(j);
-                }
-
-                NewsArticle newStory = new NewsArticle(title, author);
+                NewsArticle newStory = new NewsArticle(webTitle, sectionName, pubDate, url);
                 stories.add(newStory);
             }
 
