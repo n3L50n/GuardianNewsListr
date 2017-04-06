@@ -2,10 +2,10 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_container"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    card_view:contentPadding="8dp"
+    card_view:contentPadding="@dimen/card_view_padding"
     card_view:cardBackgroundColor="@color/card_view_background_color"
     card_view:cardCornerRadius="@dimen/card_view_corner_radius"
     card_view:cardElevation="@dimen/card_view_elevation">

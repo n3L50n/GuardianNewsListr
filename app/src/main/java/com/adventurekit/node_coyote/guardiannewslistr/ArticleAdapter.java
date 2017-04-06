@@ -55,10 +55,11 @@ public class ArticleAdapter extends ArrayAdapter<NewsArticle> {
             sectionNameTextView.setText(sectionName);
         }
 
-        String pubDate = currentArticle.getDatePublished();
+        String pubDateOriginal = currentArticle.getDatePublished();
         TextView pubDateTextView = (TextView) listItemCard.findViewById(R.id.news_article_date_published);
-        if (pubDate != null && !pubDate.isEmpty()) {
-            pubDateTextView.setText(pubDate);
+        if (pubDateOriginal != null && !pubDateOriginal.isEmpty()) {
+            String newPubDate = pubDateOriginal.substring(0, 10);
+            pubDateTextView.setText(newPubDate);
         }
 
         return listItemCard;

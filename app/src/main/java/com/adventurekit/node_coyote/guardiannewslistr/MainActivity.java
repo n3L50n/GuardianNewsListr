@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private String mArticleUrl;
     private ArticleAdapter mAdapter;
+    private TextView mEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         // Find a reference to the {@link ListView}
         ListView articleListView = (ListView) findViewById(R.id.list_view);
+
+        // Find a reference to the empty{@link TextView}
+        mEmpty = (TextView) findViewById(R.id.empty_text_view);
 
         // Create a new Array of News Articles and attach it to an adapter
         mAdapter = new ArticleAdapter(this, new ArrayList<NewsArticle>());
@@ -44,6 +48,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             loaderManager.initLoader(0, null, MainActivity.this);
+            mEmpty.setText(R.string.nothing);
+
+        } else {
+            View loadingIndicator = findViewById(R.id.activity_indicator);
+            loadingIndicator.setVisibility(View.GONE);
+
+            mEmpty.setText(R.string.no_internet);
         }
 
         articleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,12 +62,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+                // Fill an ArrayList with News Article data
                 NewsArticle currentArticle = mAdapter.getItem(position);
 
+                // Get the URL
                 Uri articleUrl = Uri.parse(currentArticle.getArticleUrl());
 
+                // Create an intent to open a web view
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, articleUrl);
 
+                // Open the webView of user's choice
                 startActivity(webIntent);
             }
         });
@@ -82,6 +97,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader<List<NewsArticle>> loader, List<NewsArticle> articles) {
+
+        View loadingIndicator = findViewById(R.id.activity_indicator);
+        loadingIndicator.setVisibility(View.GONE);
 
         mAdapter.clear();
 
