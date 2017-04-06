@@ -6,28 +6,13 @@ package com.adventurekit.node_coyote.guardiannewslistr;
 
 public class NewsArticle {
 
-    private String mArticleTitle;
-    private String mArticleSectionName;
-    private String mDatePublished;
-    private String mArticleUrl;
-
-
-    /**
-     * Constructor for the case of no date published
-     *
-     * @param articleTitle       the Title of article
-     * @param articleSectionName the Section name of the article
-     * @param articleUrl         when tapped, the ListView item should redirect user to this url
-     */
-    public NewsArticle(String articleTitle, String articleSectionName, String articleUrl) {
-        mArticleTitle = articleTitle;
-        mArticleSectionName = articleSectionName;
-        mArticleUrl = articleUrl;
-    }
+    public final String mArticleTitle;
+    public final String mArticleSectionName;
+    public final String mDatePublished;
+    public final String mArticleUrl;
 
     /**
      * Constructor for the case of all members queried
-     *
      * @param articleTitle       the Title of article
      * @param articleSectionName the Section name of the article
      * @param datePublished      the date the News article was published

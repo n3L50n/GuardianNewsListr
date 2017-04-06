@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private String mArticleUrl;
     private ArticleAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Find a reference to the {@link ListView}
-        ListView articleListView = (ListView) findViewById(R.id.list);
+        ListView articleListView = (ListView) findViewById(R.id.list_view);
 
         // Create a new Array of News Articles and attach it to an adapter
         mAdapter = new ArticleAdapter(this, new ArrayList<NewsArticle>());
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()){
-            loaderManager.initLoader(1, null, MainActivity.this);
+            loaderManager.initLoader(0, null, MainActivity.this);
         }
     }
 
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<NewsArticle>> onCreateLoader(int id, Bundle args) {
-        mAdapter.clear();
         urlAssembler(mArticleUrl);
         Log.v("onCreateLoaderUrl", mArticleUrl);
         return new ArticleLoader(MainActivity.this, mArticleUrl);
@@ -63,11 +63,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<NewsArticle>> loader, List<NewsArticle> articles) {
 
+        mAdapter.clear();
+
         if (articles != null && !articles.isEmpty()){
             mAdapter.addAll(articles);
         }
 
-        mAdapter.clear();
     }
 
     @Override

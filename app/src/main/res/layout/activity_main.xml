@@ -7,7 +7,7 @@
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@color/card_view_background_color"
-        android:id="@+id/list"
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

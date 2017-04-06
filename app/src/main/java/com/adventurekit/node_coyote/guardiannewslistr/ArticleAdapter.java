@@ -19,25 +19,25 @@ public class ArticleAdapter extends ArrayAdapter<NewsArticle> {
 
     /**
      * Constructor for building a new NewsArticle UI
+     *
      * @param context  Given context
      * @param articles A list of NewsArticles to fill a ListView
      */
     public ArticleAdapter(@NonNull Context context, ArrayList<NewsArticle> articles) {
-        super(context, 0 , articles);
+        super(context, 0, articles);
     }
 
     /**
-     *
-     * @param position the position of the item being selected
+     * @param position     the position of the item being selected
      * @param listItemCard a card view
-     * @param parent the parent
+     * @param parent       the parent
      * @return a card view packed with a News Article
      */
     @Override
-    public View getView(int position, View listItemCard, ViewGroup parent){
+    public View getView(int position, View listItemCard, ViewGroup parent) {
 
         // If there are no News Article cards, add them.
-        if (listItemCard == null){
+        if (listItemCard == null) {
             listItemCard = LayoutInflater.from(getContext()).inflate(R.layout.card_view_frag, parent, false);
         }
 
@@ -45,19 +45,19 @@ public class ArticleAdapter extends ArrayAdapter<NewsArticle> {
 
         String articleTitle = currentArticle.getArticleTitle();
         TextView titleTextView = (TextView) listItemCard.findViewById(R.id.news_article_title);
-        if (articleTitle != null && articleTitle.isEmpty()){
+        if (articleTitle != null && !articleTitle.isEmpty()) {
             titleTextView.setText(articleTitle);
         }
 
         String sectionName = currentArticle.getArticleSectionName();
         TextView sectionNameTextView = (TextView) listItemCard.findViewById(R.id.news_article_section_name);
-        if (sectionName != null && !sectionName.isEmpty()){
+        if (sectionName != null && !sectionName.isEmpty()) {
             sectionNameTextView.setText(sectionName);
         }
 
         String pubDate = currentArticle.getDatePublished();
         TextView pubDateTextView = (TextView) listItemCard.findViewById(R.id.news_article_date_published);
-        if (pubDate != null && !pubDate.isEmpty()){
+        if (pubDate != null && !pubDate.isEmpty()) {
             pubDateTextView.setText(pubDate);
         }
 

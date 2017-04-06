@@ -17,14 +17,17 @@
         android:orientation="vertical">
 
         <TextView
+            android:text="hello"
             android:id="@+id/news_article_title"
             style="@style/ArticleTitleStyle" />
 
         <TextView
+            android:text="hi"
             android:id="@+id/news_article_section_name"
             style="@style/SectionNameStyle" />
 
         <TextView
+            android:text="yo"
             android:id="@+id/news_article_date_published"
             style="@style/DatePublishedStyle"/>
 
