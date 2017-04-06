@@ -36,4 +36,8 @@ public class NewsArticle {
     public String getDatePublished() {
         return mDatePublished;
     }
+
+    public String getArticleUrl(){
+        return mArticleUrl;
+    }
 }
